@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin - Active Sessions{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Active Sessions</h1>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+    
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">Currently Active Users</h5>
+        </div>
+        <div class="card-body">
+            {% if active_sessions %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Username</th>
+                                <th>IP Address</th>
+                                <th>Login Time</th>
+                                <th>Last Activity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for session in active_sessions %}
+                            <tr>
+                                <td>{{ session.user_id }}</td>
+                                <td>{{ session.username }}</td>
+                                <td>{{ session.ip_address }}</td>
+                                <td>{{ session.login_time }}</td>
+                                <td>{{ session.last_activity }}</td>
+                                <td>
+                                    <form action="{{ url_for('admin_terminate_session', session_id=session.id) }}" method="post">
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to terminate this session?')">
+                                            Terminate
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> No active sessions found.
+                </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <p class="text-muted">
+                    <small>Note: This is a simplified implementation. In a production environment, you would use a more robust session tracking system.</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

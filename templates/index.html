@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Object Detection System{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <!-- Tab Navigation -->
+            <div class="detection-tabs">
+                <button class="tab-button active" data-target="realtime-section">
+                    <i class="fas fa-video"></i> Real-Time Detection
+                </button>
+                <button class="tab-button" data-target="image-section">
+                    <i class="fas fa-image"></i> Image Detection
+                </button>
+                <button class="tab-button" data-target="video-section">
+                    <i class="fas fa-film"></i> Video Detection
+                </button>
+            </div>
+        
+            <!-- Real-Time Detection Section -->
+            <div id="realtime-section" class="detection-section active text-center">
+                <h2 class="section-title"><i class="fas fa-video"></i> Real-Time Webcam Detection</h2>
+                <p>Detect objects in real-time using your webcam</p>
+                
+                <div class="action-buttons d-flex justify-content-center">
+                    <button id="start-btn" class="btn btn-success mx-2">
+                        <i class="fas fa-play"></i> Start Detection
+                    </button>
+                    <button id="stop-btn" class="btn btn-danger mx-2">
+                        <i class="fas fa-stop"></i> Stop Detection
+                    </button>
+                    <button id="clear-realtime-btn" class="btn btn-warning mx-2">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+                
+                <div class="media-container mx-auto" style="max-width: 800px;">
+                    <img id="video-feed" src="about:blank" alt="Video Feed" onerror="this.style.display='none';" class="mx-auto">
+                    <div id="realtime-result" class="result-message"></div>
+                </div>
+            </div>
+            
+            <!-- Image Detection Section -->
+            <div id="image-section" class="detection-section text-center">
+                <h2 class="section-title"><i class="fas fa-image"></i> Image Object Detection</h2>
+                <p>Upload an image to detect objects</p>
+                
+                <form id="image-form" enctype="multipart/form-data" class="mx-auto" style="max-width: 600px;">
+                    <div class="file-input-container">
+                        <input type="file" name="image" id="image-input" class="form-control" accept="image/*" required>
+                    </div>
+                    
+                    <div class="action-buttons d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary mx-2">
+                            <i class="fas fa-search"></i> Detect Objects
+                        </button>
+                        <button type="button" id="clear-image-btn" class="btn btn-warning mx-2">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="image-result" class="result-message mx-auto" style="max-width: 800px;"></div>
+                
+                <div class="media-container mx-auto" style="max-width: 800px;">
+                    <img id="detected-image" style="display:none;" alt="Detected Image" class="mx-auto">
+                </div>
+                
+                <a id="download-image" class="download-button" style="display:none;" download>
+                    <i class="fas fa-download"></i> Download Processed Image
+                </a>
+            </div>
+            
+            <!-- Video Detection Section -->
+            <div id="video-section" class="detection-section text-center">
+                <h2 class="section-title"><i class="fas fa-film"></i> Video Object Detection</h2>
+                <p>Upload a video to detect objects throughout the footage</p>
+                
+                <form id="video-form" enctype="multipart/form-data" class="mx-auto" style="max-width: 600px;">
+                    <div class="file-input-container">
+                        <input type="file" name="video" id="video-input" class="form-control" accept="video/*" required>
+                    </div>
+                    
+                    <div class="action-buttons d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary mx-2">
+                            <i class="fas fa-search"></i> Process Video
+                        </button>
+                        <button type="button" id="stop-video-btn" class="btn btn-danger mx-2">
+                            <i class="fas fa-stop"></i> Stop Processing
+                        </button>
+                        <button type="button" id="clear-video-btn" class="btn btn-warning mx-2">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="video-result" class="result-message mx-auto" style="max-width: 800px;"></div>
+                
+                <!-- Progress Bar -->
+                <div class="progress mx-auto" id="video-progress-bar-container" style="display:none; max-width: 800px;">
+                    <div id="video-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" 
+                         role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                </div>
+                
+                <div class="media-container mx-auto" style="max-width: 800px;">
+                    <video id="detected-video" style="display:none;" controls class="mx-auto"></video>
+                </div>
+                
+                <a id="download-video" class="download-button" style="display:none;" download>
+                    <i class="fas fa-download"></i> Download Processed Video
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

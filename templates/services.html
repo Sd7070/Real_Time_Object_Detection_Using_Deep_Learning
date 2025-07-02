@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Services - Object Detection System{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h2 class="text-center mb-5">
+                <i class="fas fa-cogs text-primary"></i> Our Services
+            </h2>
+            
+            <div class="row g-4">
+                <!-- Real-time Detection Service -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm hover-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-video fa-3x text-primary"></i>
+                            </div>
+                            <h4 class="card-title">Real-time Detection</h4>
+                            <p class="card-text">
+                                Detect objects in real-time using your webcam with high accuracy and minimal latency.
+                            </p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Instant feedback</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Multiple object classes</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Confidence scores</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center">
+                            <a href="{{ url_for('index') }}" class="btn btn-primary">Try Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Detection Service -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm hover-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-image fa-3x text-success"></i>
+                            </div>
+                            <h4 class="card-title">Image Detection</h4>
+                            <p class="card-text">
+                                Upload and analyze images to identify and locate objects with precision.
+                            </p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-check-circle text-success me-2"></i>High resolution support</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Downloadable results</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Detailed object information</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center">
+                            <a href="{{ url_for('index') }}" class="btn btn-success">Try Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video Detection Service -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm hover-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-wrapper mb-3">
+                                <i class="fas fa-film fa-3x text-danger"></i>
+                            </div>
+                            <h4 class="card-title">Video Detection</h4>
+                            <p class="card-text">
+                                Process entire videos to track and identify objects throughout the footage.
+                            </p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Support for various formats</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Progress tracking</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Downloadable processed videos</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center">
+                            <a href="{{ url_for('index') }}" class="btn btn-danger">Try Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .icon-wrapper {
+        height: 80px;
+        width: 80px;
+        line-height: 80px;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.05);
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Object Detection System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-container {
+        max-width: 500px;
+        margin: 30px auto;
+        background-color: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+    
+    .auth-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    .auth-form .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .auth-form label {
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 8px;
+    }
+    
+    .auth-form .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        border: 2px solid #e9ecef;
+    }
+    
+    .auth-form .btn-primary {
+        width: 100%;
+        padding: 12px;
+        font-weight: 600;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+    
+    .auth-footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.95rem;
+    }
+    
+    .auth-footer a {
+        color: #2575fc;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    
+    .auth-footer a:hover {
+        text-decoration: underline;
+    }
+    
+    .password-requirements {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 5px;
+    }
+    
+    .invalid-feedback {
+        display: none;
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2 class="auth-title"><i class="fas fa-user-plus"></i> Create Account</h2>
+    
+    <form class="auth-form" method="POST" action="{{ url_for('register') }}" id="registerForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+            <div class="invalid-feedback" id="username-feedback"></div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            <div class="invalid-feedback" id="email-feedback"></div>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <div class="password-requirements">
+                Password must be at least 8 characters and include letters and numbers
+            </div>
+            <div class="invalid-feedback" id="password-feedback"></div>
+        </div>
+        
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            <div class="invalid-feedback" id="confirm-password-feedback"></div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Register
+        </button>
+    </form>
+    
+    <div class="auth-footer">
+        <p class="text-dark">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('registerForm');
+        
+        form.addEventListener('submit', function(e) {
+            let isValid = true;
+            
+            // Reset all error messages
+            document.querySelectorAll('.invalid-feedback').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Validate username
+            const username = document.getElementById('username').value.trim();
+            if (username.length < 3) {
+                document.getElementById('username-feedback').textContent = 'Username must be at least 3 characters';
+                document.getElementById('username-feedback').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate email
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email-feedback').textContent = 'Please enter a valid email address';
+                document.getElementById('email-feedback').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate password
+            const password = document.getElementById('password').value;
+            if (password.length < 8 || !/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+                document.getElementById('password-feedback').textContent = 'Password must be at least 8 characters and include letters and numbers';
+                document.getElementById('password-feedback').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate password confirmation
+            const confirmPassword = document.getElementById('confirm_password').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirm-password-feedback').textContent = 'Passwords do not match';
+                document.getElementById('confirm-password-feedback').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}About - Object Detection System{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">
+                        <i class="fas fa-info-circle text-primary"></i> About Our Object Detection System
+                    </h2>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-lightbulb text-warning"></i> Our Mission</h4>
+                        <p class="lead">
+                            We aim to make advanced object detection technology accessible to everyone through an intuitive and powerful web interface.
+                        </p>
+                        <p>
+                            Our system leverages state-of-the-art YOLOv8 deep learning models to provide accurate and real-time object detection capabilities for various applications.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-cogs text-secondary"></i> Technology</h4>
+                        <p>
+                            Our object detection system is built using the following technologies:
+                        </p>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item" style="background-color: rgba(10, 10, 46, 0.8); color: #fff; border-color: rgba(100, 200, 255, 0.2);"><i class="fas fa-check-circle text-success"></i> <strong>YOLOv8:</strong> State-of-the-art object detection model</li>
+                            <li class="list-group-item" style="background-color: rgba(10, 10, 46, 0.8); color: #fff; border-color: rgba(100, 200, 255, 0.2);"><i class="fas fa-check-circle text-success"></i> <strong>Flask:</strong> Lightweight and powerful web framework</li>
+                            <li class="list-group-item" style="background-color: rgba(10, 10, 46, 0.8); color: #fff; border-color: rgba(100, 200, 255, 0.2);"><i class="fas fa-check-circle text-success"></i> <strong>OpenCV:</strong> Computer vision library for image processing</li>
+                            <li class="list-group-item" style="background-color: rgba(10, 10, 46, 0.8); color: #fff; border-color: rgba(100, 200, 255, 0.2);"><i class="fas fa-check-circle text-success"></i> <strong>Bootstrap:</strong> Modern responsive UI framework</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-users text-info"></i> Our Team</h4>
+                        <p>
+                            We are a dedicated team of AI enthusiasts and developers passionate about making advanced computer vision technologies accessible to everyone.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-shield-alt text-danger"></i> Privacy & Security</h4>
+                        <p>
+                            We take your privacy seriously. All processing is done on our secure servers, and we do not store your images or videos unless explicitly requested.
+                        </p>
+                    </div>
+                    
+                    <div class="text-center mt-5">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                        <a href="{{ url_for('services') }}" class="btn btn-outline-primary btn-lg ms-2">
+                            <i class="fas fa-cogs"></i> Our Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

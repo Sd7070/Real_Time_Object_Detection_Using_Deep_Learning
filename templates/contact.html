@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Object Detection System{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">
+                        <i class="fas fa-envelope text-primary"></i> Contact Us
+                    </h2>
+                    <p class="text-center mb-5">
+                        Have questions or feedback? We'd love to hear from you!
+                    </p>
+                    
+                    <form id="contact-form" action="{{ url_for('contact_submit') }}" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                    <label for="name"><i class="fas fa-user text-muted me-2"></i>Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                    <label for="email"><i class="fas fa-envelope text-muted me-2"></i>Your Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                            <label for="subject"><i class="fas fa-heading text-muted me-2"></i>Subject</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 150px" required></textarea>
+                            <label for="message"><i class="fas fa-comment text-muted me-2"></i>Your Message</label>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Additional Contact Information -->
+            <div class="row mt-5 g-4">
+                <div class="col-md-4">
+                    <div class="card text-center h-100 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-map-marker-alt fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">Our Location</h5>
+                            <p class="card-text">Wadia College Campus, 19, Late Prin. V.K. Joag Path<br>Near Ruby Hall Clinic, Pune Station, Pune – 411001</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card text-center h-100 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-phone fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Phone</h5>
+                            <p class="card-text">+91 86050 29376<br>Mon-Fri, 9am-5pm</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card text-center h-100 shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Email</h5>
+                            <p class="card-text">pratikmanjare95@gmail.com<br>sunniraj4511@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="text-center mt-5">
+                <h4 class="mb-4">Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" class="btn btn-outline-primary rounded-circle mx-2" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-info rounded-circle mx-2" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-danger rounded-circle mx-2" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-dark rounded-circle mx-2" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary rounded-circle mx-2" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .social-links .btn {
+        width: 50px;
+        height: 50px;
+        line-height: 35px;
+        transition: all 0.3s ease;
+    }
+    
+    .social-links .btn:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, you would send this data to the server
+            // For now, we'll just show a success message
+            
+            const formData = new FormData(contactForm);
+            const formValues = Object.fromEntries(formData.entries());
+            
+            // Log the form values (for demonstration)
+            console.log('Form submitted:', formValues);
+            
+            // Show success message
+            alert('Thank you for your message! We will get back to you soon.');
+            
+            // Reset the form
+            contactForm.reset();
+        });
+    });
+</script>
+{% endblock %}
