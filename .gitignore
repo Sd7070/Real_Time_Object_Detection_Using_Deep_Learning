@@ -39,3 +39,7 @@ outputs/*
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Heroku specific
+Procfile
+runtime.txt
