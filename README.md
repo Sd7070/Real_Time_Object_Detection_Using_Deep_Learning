@@ -105,19 +105,39 @@ A secure web application that performs real-time object detection using your web
 ```
 ├── Application.py       # Main Flask application
 ├── models.py            # User authentication models
+├── Application.py       # Main Flask application
 ├── database.db          # SQLite database for user information
 ├── static/              # Static files (CSS, JS)
+│   ├── css/
+│   │   └── style.css    # Main stylesheet
+│   ├── images/
+│   │   └── network-background.jpg  # Background image
+│   └── js/
+│       ├── main.js      # Main JavaScript
+│       ├── script.js    # Additional scripts
+│       └── theme-toggle.js  # Theme toggle functionality
 ├── templates/           # HTML templates
 │   ├── base.html        # Base template with common elements
 │   ├── index.html       # Main application interface
 │   ├── login.html       # User login page
 │   ├── register.html    # User registration page
-│   ├── admin/           # Admin dashboard templates
-│   └── detection.html   # Detection interface
+│   ├── about.html       # About page
+│   ├── contact.html     # Contact page
+│   ├── services.html    # Services page
+│   └── admin/
+│       ├── admin_dashboard.html  # Admin dashboard
+│       ├── admin_users.html      # User management
+│       ├── admin_sessions.html   # Session management
+│       └── admin_contacts.html   # Contact messages
 ├── uploads/             # Temporary storage for uploaded files
 ├── outputs/             # Processed images and videos
-├── yolov8m.pt           # YOLOv8 medium model weights
-└── requirements.txt     # Project dependencies
+├── yolov8m.pt           # YOLOv8 medium model weights (download separately)
+├── requirements.txt     # Project dependencies
+├── models.py            # User authentication models
+├── train_model.py       # Model training script
+├── view_users.py        # User management script
+├── delete_user.py       # User deletion script
+└── .gitignore          # Git ignore file
 ```
 
 ## How It Works
